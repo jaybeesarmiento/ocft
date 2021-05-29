@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: copy-file
+spec:
+  volumes:
+    - name: shared-volume
+      emptyDir: {}
+  initContainers:
+    - name: one
+      image: debian
+      volumeMounts:
+        - name: shared-volume
+          mountPath: /home
+      command: [ "/bin/bash", "-ce", "echo hello > /home/file.txt" ]
+  containers:
+    - name: two
+      image: debian
+      volumeMounts:
+        - name: shared-volume
+          mountPath: /home
+      command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]

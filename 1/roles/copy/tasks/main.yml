@@ -1,0 +1,7 @@
+---
+- name: Copy file
+  copy:
+    src: files/{{ file }}
+    dest: "{{ destination_folder  }}"
+    attr: +i
+  become: true

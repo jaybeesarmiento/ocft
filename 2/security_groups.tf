@@ -1,7 +1,7 @@
-resource "aws_security_group" "ocft-sg-pub" {
-  name        = "ocft-sg-pub"
-  description = "ocft-sg-pub"
-  vpc_id      = aws_vpc.ocft-vpc.id
+resource "aws_security_group" "test-sg-pub" {
+  name        = "test-sg-pub"
+  description = "test-sg-pub"
+  vpc_id      = aws_vpc.test-vpc.id
 
   egress {
     from_port   = 0
@@ -32,7 +32,7 @@ resource "aws_security_group" "ocft-sg-pub" {
   }
 
   tags = {
-    Name = "ocft-sg-pub"
+    Name = "test-sg-pub"
   }
 }
 
@@ -50,23 +50,23 @@ resource "aws_security_group" "ocft-sg-priv" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
     security_groups = [aws_security_group.ocft-sg-pub.id]
   }
 
   ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
     security_groups = [aws_security_group.ocft-sg-pub.id]
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
     security_groups = [aws_security_group.ocft-sg-pub.id]
   }
 
